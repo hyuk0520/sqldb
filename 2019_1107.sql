@@ -99,8 +99,25 @@ GROUP BY cycle.cid,
          customer.cnm,cycle.pid,
          product.pnm, cycle.cnt;
  -------------------------------------------------------------------------- 
+--실습 join7
+/*
+erd 다이어그램을 참고하여 cycle, product 테이블을 이용하여 제품별, 개수의 합과,
+제품명을 다음과 같은 결과가 나오도록 쿼리를 작성하시오
+*/
+SELECT product.pid, product.pnm,
+       SUM(cycle.cnt) cnt 
+FROM cycle, product
+WHERE cycle.pid = product.pid
+GROUP BY product.pid, product.pnm;
 
-
+SELECT a.pid, a.pnm, SUM(b.cnt) AS cnt
+FROM product a JOIN cycle b ON (b.pid = a.pid)
+--WHERE b.pid = a.pid
+GROUP BY a.pid, a.pnm;
+         
+select empno, count(*)
+from emp
+group by empno;
 
        
 
