@@ -1,6 +1,6 @@
 /*
 - 그룹함수
-- multi eow function : 여러개의 행을 입력으로 하나의 결과 행을 생성
+- multi row function : 여러개의 행을 입력으로 하나의 결과 행을 생성
 - SUM, MAX, MIN, AVG, COUNT
 - GROUP BY COL | express
 - SELECT절에는 GROUP BY절에 기술된 COL, EXPRESS 표기가능
@@ -97,7 +97,7 @@ ALTER TABLE emp DROP COLUMN DNAME; --테이블이름 변경
 SELECT *
 FROM emp;
 
---anai natural join : 조인하는 테이블의 컬렴명이 같은 컬럼을 기준으로 JOIN)
+--ansi natural join : 조인하는 테이블의 컬렴명이 같은 컬럼을 기준으로 JOIN)
 SELECT DEPTNO, ENAME, DNAME
 FROM emp NATURAL JOIN DEPT;
 
@@ -153,9 +153,45 @@ FROM salgrade;
 SELECT empno, ename, sal
 FROM emp;
 
-SELECT emp, empno, emp.ename, emp.sal, salgrade.*
+SELECT emp.empno, emp.ename, emp.sal, salgrade.*
 FROM emp, salgrade
 WHERE emp.sal BETWEEN salgrade.losal AND salgrade.hisal;
+
+--ansi 방법
+SELECT emp.empno, emp.ename, emp.sal, salgrade.*
+FROM emp, salgrade
+WHERE emp.sal BETWEEN salgrade.losal AND salgrade.hisal;
+
+--non equi join
+SELECT emp.ename, emp.sal, salgrade.losal, salgrade.hisal
+FROM emp, salgrade
+WHERE emp.sal BETWEEN salgrade.losal AND salgrade.hisal;
+
+--실습 join0
+--emp,dept 테이블을 이용하여 다음과 같이 조회되도록 쿼리작성
+SELECT emp.empno, emp.ename, dept.deptno, dept.dname
+FROM emp, dept
+WHERE emp.deptno = dept.deptno
+ORDER BY deptno;
+
+
+--실습 join0_1
+--emp,dept 테이블을 이용하여 다음과 같이 조회되도록 쿼리작성
+--(부서번호가 10, 30인 데이터만 조회)
+SELECT emp.empno, emp.ename, dept.deptno, dept.dname
+FROM emp, dept
+WHERE emp.deptno = dept.deptno
+AND dept.deptno IN (10, 30);
+
+SELECT emp.empno, emp.ename, dept.deptno, dept.dname
+  FROM emp, dept
+ WHERE emp.deptno = dept.deptno
+   AND emp.deptno IN (10, 30);
+
+
+ 
+
+
 
 
 

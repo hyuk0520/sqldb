@@ -179,12 +179,3 @@ WHERE DEPTNO = 30;
 
 select * from emp; 
                              
-                                 
-
-
-
-
-
-
-
-

@@ -51,7 +51,7 @@ FROM emp;
 - COALESCE(expr1, expr2, empr3...)
 - 함수인자 중 null이 아닌 첫번째 인자
 */
-SELECT empno, ename, sal, comm, coalesce(comm, sal)
+SELECT empno, ename, sal, comm, coalesce(sal, comm)
 FROM emp;
 
 --fn4
@@ -199,6 +199,7 @@ SELECT  deptno,
             COUNT(sal) sal_cnt,
             COUNT(mgr) mgr_cnt,
             COUNT(deptno) empno_cnt
+            
 FROM emp
 GROUP BY deptno;
 
