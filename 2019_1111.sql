@@ -135,6 +135,18 @@ SELECT a.cid, 'borwn' cnm, b.pid, b.pnm, a.day, a.cnt
                    FROM product
                   WHERE b.pid = 100);
 
+--1번고객에 먹는 애음제품
+--2번 고객도 먹는 애음제품을오 제한
+--고객명 추가
+SELECT cycle.cid, customer.cnm, product.pid, day, cnt
+FROM cycle, customer, product
+WHERE cycle.cid = 1
+AND cycle.cid = customer.cid
+AND cycle.pid = product.pid
+AND cycle.pid IN (SELECT pid 
+                    FROM cycle
+                   WHERE cid = 2); 
+
 
 --EXISTS MAIN쿼리의 컬럼을 사용해서 SUBQUERY에 만족하는 조건이 있는지 체크
 --만족하는 값이 하나라도 존재한다면 더이상 진행하지 않고 멈추기 때문에 성능면에서 유리
@@ -173,6 +185,13 @@ SELECT *
  WHERE EXISTS (SELECT 'X'
                  FROM cycle
                 WHERE cycle.cid NOT IN (1));
+                
+SELECT *
+FROM product
+WHERE NOT EXISTS (SELECT 'X'
+                     FROM cycle
+                    WHERE cid = 1
+                      AND  pid = product.pid);
                   
 
 select * from product;
