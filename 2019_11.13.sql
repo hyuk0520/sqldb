@@ -278,6 +278,9 @@ ALTER TABLE emp_test ADD CONSTRAINT check_ename_len CHECK(LENGTH(ename) > 3);
 INSERT INTO emp_test VALUES (9999, 'brown', 10);
 INSERT INTO emp_test VALUES (9998, 'br', 10);
 
+--CHECK 제약 제거
+ALTER TABLE emp_test DROP CONSTRAINT check_ename_len;
+
 --NOT NULL 제약 추가
 ALTER TABLE emp_test MODIFY (ename NOT NULL);
 
