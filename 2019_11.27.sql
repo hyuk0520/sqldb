@@ -118,7 +118,7 @@ exec printemp(7369);
 --½Ç½À pro_2
 CREATE OR REPLACE PROCEDURE registdept_test
 (p_deptno IN dept_test.deptno%TYPE, 
- p_dname IN dept_test.dname%TYPE, 
+ p_dname IN dept_test.dname%TYPE,  
  p_loc IN dept_test.loc%TYPE)
 IS
     
